@@ -5,56 +5,65 @@ import LocationInfo from './LocationInfo';
 import ResidentInfo from './ResidentInfo';
 
 
-const Location = () => {
+const Location = ({spinner}) => {
 
    const [location, setLocation] = useState({});
 
    const randomNumber = Math.floor(Math.random() * 126) + 1;
 
-   const [inputValue,setInputValue] = useState('')
+   const [inputValue,setInputValue] = useState('');
+
+   const [ isLoading , setIsLoading] = useState(true)
 
 	useEffect(() => {
 		axios.get(`https://rickandmortyapi.com/api/location/${randomNumber}`)
       .then((res) =>
-			setLocation(res.data)
+			setLocation(res.data),
+         setIsLoading(false)
 		);
 	}, []);
 
 
    function searchLocation(e){
       axios.get(`https://rickandmortyapi.com/api/location/${inputValue}`)
-      .then(res=>setInputValue(res.data))
+      .then(res=>setInputValue(res.data),setIsLoading(false))
    }
 
 
    return (
       <>
-         {inputValue ? 
-         (<div className='search-section'>
-            <LocationInfo location={inputValue}/>
-            
-         </div>) : 
-         (<div className='search-section'>
-            <LocationInfo location={location}/>
-            
-            
-         </div>)}
+         {isLoading ? (
+            <img className='portal-spinner'  src={spinner} alt="" />
+         ) : (<>
+            {inputValue ? 
+            (<div className='search-section'>
+               <LocationInfo location={inputValue}/>
+               
+            </div>) : 
+            (<div className='search-section'>
+               <LocationInfo location={location}/>
+               
+               
+            </div>)}
 
 
-         <div className='input'>
-               <input type="text" placeholder="type a location id" onChange={e=>setInputValue(e.target.value)}/>
-               <button onClick={searchLocation}>Search</button>
-         </div>
-         
-         
-         {inputValue ? 
-         (inputValue.residents?.map(resident=>
+            <div className='input'>
+                  <input type="text" placeholder="type a location id" onChange={e=>setInputValue(e.target.value)}/>
+                  <button onClick={searchLocation}>Search</button>
+            </div>
+            
+            
+            {inputValue ? 
+            (inputValue.residents?.map(resident=>
+               ( <div key={resident}><ResidentInfo url={resident}/></div>) 
+               )) : 
+            (location.residents?.map(resident=>
             ( <div key={resident}><ResidentInfo url={resident}/></div>) 
-            )) : 
-         (location.residents?.map(resident=>
-         ( <div key={resident}><ResidentInfo url={resident}/></div>) 
-         ))}
-         
+            ))}
+            </>
+         )}
+            
+            
       </>
    );
 };

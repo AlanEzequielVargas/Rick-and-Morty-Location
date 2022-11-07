@@ -19,6 +19,11 @@ body {
 span {
    color: #a5a5a5;
 }
+.portal-spinner {
+   width: 100%;
+   grid-column: 2/3;
+   grid-row: 1/2;
+}
 .nav-image {
    width: 100%;
    height: 100%;

@@ -1,30 +1,18 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Location from "./components/Location";
+import hero from "../src/assets/nav-image.jpg";
+import logo from "../src/assets/Rick-And-Morty-Logo.png";
 
 
 function App() {
 
-   const [isLoad,setIsLoad] = useState(false)
-
-   useEffect(()=>{
-      setIsLoad(true)
-      setTimeout(()=>{
-         setIsLoad(false)
-      },2000)
-   },[])
-
 	return (
       
-		<>
-         {isLoad ? 
-         (<h1>cargando</h1>) : 
-         (<div className="App">
-            <img className='nav-image' src="../src/assets/nav-image.jpg" alt="" />
-            <img className='logo' src="../src/assets/Rick-And-Morty-Logo.png" alt="" />
+		<div className="App">
+            <img className='nav-image' src={hero} alt="Hero" />
+            <img className='logo' src={logo} alt="RyM logo" />
             <Location/>
-         </div>)}
-      </>  
+      </div> 
 		
 	);
 }

@@ -1,18 +1,31 @@
+import { useEffect, useState } from "react";
 import "./App.css";
-import Item from "./components/Item";
 import Location from "./components/Location";
-import ResidentInfo from "./components/ResidentInfo";
+
 
 function App() {
 
+   const [isLoad,setIsLoad] = useState(false)
 
+   useEffect(()=>{
+      setIsLoad(true)
+      setTimeout(()=>{
+         setIsLoad(false)
+      },2000)
+   },[])
 
 	return (
-		<div className="App">
-         <img className='nav-image' src="../src/assets/nav-image.jpg" alt="" />
-         <img className='logo' src="../src/assets/Rick-And-Morty-Logo.png" alt="" />
-         <Location/>
-		</div>
+      
+		<>
+         {isLoad ? 
+         (<h1>cargando</h1>) : 
+         (<div className="App">
+            <img className='nav-image' src="../src/assets/nav-image.jpg" alt="" />
+            <img className='logo' src="../src/assets/Rick-And-Morty-Logo.png" alt="" />
+            <Location/>
+         </div>)}
+      </>  
+		
 	);
 }
 

@@ -5,6 +5,7 @@ import logo from "../src/assets/Rick-And-Morty-Logo.png";
 import spinner from "../src/assets/portal-spinner.gif";
 
 
+
 function App() {
 
 	return (
@@ -12,7 +13,10 @@ function App() {
 		<div className="App">
             <img className='nav-image' src={hero} alt="Hero" />
             <img className='logo' src={logo} alt="RyM logo" />
+
             <Location spinner={spinner}/>
+
+
       </div> 
 		
 	);

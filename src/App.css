@@ -1,0 +1,235 @@
+*,*::after,*::before {
+   padding: 0;
+   margin: 0;
+}
+html {
+   box-sizing: border-box;
+}
+body {
+   box-sizing: inherit;
+   background-color: #05292E;
+   color: white;
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.App {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 70vh 50vh auto;
+}
+span {
+   color: #a5a5a5;
+}
+.nav-image {
+   width: 100%;
+   height: 100%;
+   grid-column: 1/4;
+   grid-row: 1/2;
+}
+.logo {
+   width: 25%;
+   grid-column: 1/4;
+   grid-row: 1/2;
+   margin: 1rem auto 0 auto;
+}
+.search-section {
+   width: 100%;
+   height: 100%;
+   grid-column: 1/4;
+   grid-row: 2/3;
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   text-align: center;
+}
+.input{
+   grid-column: 2/3;
+   grid-row: 1/2;
+   margin: 22rem auto 0 auto;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.input input {
+   width: 80%;
+   height: 3rem;
+   border: white;
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+}
+.input input::placeholder {
+   text-align: center;
+   font-size: 1rem;
+}
+.input button {
+   width: 20%;
+   height: 3rem;
+   background-color: #094b55;
+   color: white;
+   text-transform: uppercase;
+   border-color: #094b55;
+   border-top-right-radius: 10px;
+   border-bottom-right-radius: 10px;
+}
+.location-info {
+   width: 80%;
+}
+.location-info div {
+   margin-top: 5rem;
+   display: flex;
+   justify-content: space-evenly;
+}
+.card-resident {
+   background: linear-gradient(3deg, rgba(6,34,38,1) 0%, rgba(6,34,38,1) 93%, rgba(12,63,70,1) 100%);
+   width: 20rem;
+   height: 28rem;
+   border-radius: 10px;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 10% auto 10% 10% 10%;
+   margin: 20px auto;
+}
+.card-resident img{
+   width: 100%;
+}
+.resident-name {
+   grid-column: 1/3;
+   grid-row: 1/2;
+   margin: auto;
+}
+.resident-status {
+   background-color: #094b55;
+   width: 100%;
+   height: 65%;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   text-align: center;
+   grid-column: 2/3;
+   grid-row: 3/4;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   column-gap: 5px;
+}
+.resident-img {
+   grid-column: 1/3;
+   grid-row: 2/4;
+}
+.resident-origin {
+   grid-column: 1/3;
+   grid-row: 4/5;
+   padding: 6px 0px 0px 15px;
+}
+.resident-species {
+   grid-column: 1/3;
+   grid-row: 5/6;
+   padding: 6px 0px 0px 15px;
+}
+.resident-episodes {
+   grid-column: 2/3;
+   grid-row: 5/6;
+   text-align: end;
+   padding: 6px 10px 0px 15px;
+}
+.green-light {
+   width: 12px;
+   height: 12px;
+   background-color: #6dff54;
+   border-radius: 200px 200px 200px 200px;
+   box-shadow: -1px 1px 45px 15px rgb(0, 212, 78);
+   animation-name: intermitente;
+   animation-duration: 3s;
+   animation-delay: 2s;
+   animation-iteration-count: infinite;
+}
+.red-light {
+   width: 12px;
+   height: 12px;
+   background-color: #ff1c1c;
+   border-radius: 200px 200px 200px 200px;
+   box-shadow: -1px 1px 45px 15px rgba(255, 88, 88, 0.822);
+   animation-name: intermitente2;
+   animation-duration: 4s;
+   animation-iteration-count: infinite;
+}
+.gray-light {
+   width: 12px;
+   height: 12px;
+   background-color: #818181;
+   border-radius: 200px 200px 200px 200px;
+}
+
+@keyframes intermitente {
+   0% {}
+   50% {opacity: 20%;}
+   100% {}
+}
+@keyframes intermitente2 {
+   0% {opacity: 100%;}
+   19% {opacity: 100%;}
+   20% {opacity: 0%;}
+   21% {opacity: 100%;}
+   22% {opacity: 0%;}
+   23% {opacity: 100%;}
+   100% {opacity: 100%;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

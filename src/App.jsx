@@ -6,7 +6,9 @@ import spinner from "../src/assets/portal-spinner.gif";
 
 
 
+
 function App() {
+
 
 	return (
       
@@ -15,7 +17,6 @@ function App() {
             <img className='logo' src={logo} alt="RyM logo" />
 
             <Location spinner={spinner}/>
-
 
       </div> 
 		

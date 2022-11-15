@@ -14,6 +14,7 @@ const ResidentInfo = ({url}) => {
 
    const status = resident.status;
 
+
    return (
       <div className='card-resident'>
          <h2 className='resident-name'>{resident?.name}</h2>

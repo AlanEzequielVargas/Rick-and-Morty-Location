@@ -14,7 +14,7 @@ body {
 .App {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 70vh 50vh auto;
+   grid-template-rows: 70vh 50vh 10vh auto;
 }
 span {
    color: #a5a5a5;
@@ -63,6 +63,9 @@ span {
    border: white;
    border-top-left-radius: 10px;
    border-bottom-left-radius: 10px;
+   text-align: center;
+   font-size: 1rem;
+   font-weight: 600;
 }
 .input input::placeholder {
    text-align: center;
@@ -180,7 +183,34 @@ span {
    23% {opacity: 100%;}
    100% {opacity: 100%;}
 }
-
+/* --------------Pagination------------- */
+.pag-navigator {
+   height: 5rem;
+   grid-column: 1/4;
+   grid-row: 3/4;
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+}
+.pag-navigator .nav-pag-btn{
+   background-color: #041b1f;
+   width: 6rem;
+   height: 2.5rem;
+   color: white;
+   border-radius: 10px;
+   border: 0px;
+   cursor: pointer;
+}
+.pag-numbers button{
+   background-color: #041b1f;
+   width: 3rem;
+   height: 3rem;
+   color: white;
+   border-radius: 50px;
+   border: 0px;
+   cursor: pointer;
+   margin: 10px;
+}
 
 
 

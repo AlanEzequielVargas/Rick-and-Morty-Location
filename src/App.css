@@ -85,7 +85,7 @@ span {
 		margin: 20px auto auto auto;
 	}
 }
-@media (min-width: 1600px) {
+@media (min-width: 1300px) {
 	.hero {
 		position: relative;
 		width: 100%;

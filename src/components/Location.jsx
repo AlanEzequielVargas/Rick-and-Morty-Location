@@ -13,6 +13,8 @@ const Location = ({ spinner }) => {
 
 	const [isLoading, setIsLoading] = useState(true);
 
+	const [suggestions, setSuggestions] = useState([]);
+
 	useEffect(() => {
 		axios.get(
 			`https://rickandmortyapi.com/api/location/${randomNumber}`
@@ -25,6 +27,18 @@ const Location = ({ spinner }) => {
 		).then((res) => setInputValue(res.data), setIsLoading(false));
 		setPage(1);
 	}
+
+	useEffect(() => {
+		if (inputValue) {
+			axios.get(
+				`https://rickandmortyapi.com/api/location?name=${inputValue}`
+			).then((res) => setSuggestions(res.data.results));
+		} else {
+			setSuggestions([]);
+		}
+	}, [inputValue]);
+
+	const suggestionsCropped = suggestions.slice(0, 7);
 
 	const [page, setPage] = useState(1);
 	const characterPerPage = 9;
@@ -56,67 +70,47 @@ const Location = ({ spinner }) => {
 		numbersInput.push(i);
 	}
 
+	const [showSug, setShowSug] = useState(true);
+
 	return (
 		<>
-			{inputValue ? (
-				<div className="pag-navigator">
-					<button
-						className="nav-pag-btn"
-						onClick={() => setPage(page - 1)}
-						disabled={page === 1}
-					>
-						Prev Page
-					</button>
-
-					<div className="pag-numbers">
-						{numbersInput.map((num) => (
-							<button
-								key={num}
-								onClick={() => setPage(num)}
-							>
-								{num}
-							</button>
-						))}
-					</div>
-
-					<button
-						className="nav-pag-btn"
-						onClick={() => setPage(page + 1)}
-						disabled={page === totalPages}
-					>
-						Next Page
-					</button>
-				</div>
-			) : (
-				<div className="pag-navigator">
-					<button
-						className="nav-pag-btn"
-						onClick={() => setPage(page - 1)}
-						disabled={page === 1}
-					>
-						Prev Page
-					</button>
-
-					<div className="pag-numbers">
-						{numbers.map((num) => (
-							<button
-								key={num}
-								onClick={() => setPage(num)}
-							>
-								{num}
-							</button>
-						))}
-					</div>
-
-					<button
-						className="nav-pag-btn"
-						onClick={() => setPage(page + 1)}
-						disabled={page === totalPages}
-					>
-						Next Page
-					</button>
-				</div>
+			<div className="input">
+				<input
+					type="text"
+					placeholder="Write a name"
+					onChange={(e) => {
+						setInputValue(e.target.value);
+						setShowSug(true);
+					}}
+				/>
+				<button
+					onClick={() => {
+						searchLocation;
+						setShowSug(false);
+					}}
+				>
+					Search
+				</button>
+        {inputValue != "" && (
+				<ul
+					className="suggestions-list"
+					style={{ display: showSug ? "" : "none" }}
+				>
+					{suggestionsCropped.map((sug) => (
+						<li
+							onClick={() => {
+								setInputValue(sug);
+								setShowSug(false);
+							}}
+						>
+							{sug.name}
+						</li>
+					))}
+				</ul>
 			)}
+			</div>
+
+			
 
 			{isLoading ? (
 				<img className="portal-spinner" src={spinner} alt="" />
@@ -132,18 +126,9 @@ const Location = ({ spinner }) => {
 						</div>
 					)}
 
-					<div className="input">
-						<input
-							type="text"
-							placeholder="type a location id (1-126)"
-							onChange={(e) =>
-								setInputValue(e.target.value)
-							}
-						/>
-						<button onClick={searchLocation}>Search</button>
-					</div>
-
-					{inputValue
+					
+          <div className="characters-container">
+            {inputValue
 						? /* inputValue.residents? */ characterPaginatedInput?.map(
 								(resident) => (
 									<div key={resident}>
@@ -162,6 +147,67 @@ const Location = ({ spinner }) => {
 									</div>
 								)
 						  )}
+          </div>
+          {inputValue ? (
+						<div className="pag-navigator">
+							<button
+								className="nav-pag-btn"
+								onClick={() => setPage(page - 1)}
+								disabled={page === 1}
+							>
+								Prev Page
+							</button>
+
+							<div className="pag-numbers">
+								{numbersInput.map((num) => (
+									<button
+										key={num}
+										onClick={() => setPage(num)}
+									>
+										{num}
+									</button>
+								))}
+							</div>
+
+							<button
+								className="nav-pag-btn"
+								onClick={() => setPage(page + 1)}
+								disabled={page === totalPages}
+							>
+								Next Page
+							</button>
+						</div>
+					) : (
+						<div className="pag-navigator">
+							<button
+								className="nav-pag-btn"
+								onClick={() => setPage(page - 1)}
+								disabled={page === 1}
+							>
+								Prev Page
+							</button>
+
+							<div className="pag-numbers">
+								{numbers.map((num) => (
+									<button
+										key={num}
+										onClick={() => setPage(num)}
+									>
+										{num}
+									</button>
+								))}
+							</div>
+
+							<button
+								className="nav-pag-btn"
+								onClick={() => setPage(page + 1)}
+								disabled={page === totalPages}
+							>
+								Next Page
+							</button>
+						</div>
+					)}
+					
 				</>
 			)}
 		</>
